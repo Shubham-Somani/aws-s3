@@ -1,1 +1,2 @@
-# A wrapper for s3 to retrieve / upload / delete s3 objects
+# A wrapper for AWS S3 to get presigned url to get and put objects
+
