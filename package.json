@@ -1,25 +1,30 @@
 {
   "name": "aws-s3-evoltorio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A wrapper for AWS S3 to get presigned url to get and put objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "npm run format && git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://Shubham-Somani@github.com/Shubham-Somani/aws-s3.git"
   },
-  "keywords": ["AWS", "AWS S3", "AWS-S3", "s3"],
+  "keywords": [
+    "AWS",
+    "AWS S3",
+    "AWS-S3",
+    "s3"
+  ],
   "author": "Shubham Somani",
   "license": "ISC",
   "bugs": {
