@@ -1,6 +1,6 @@
 {
   "name": "aws-s3-evoltorio",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A wrapper for AWS S3 to get presigned url to get and put objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -20,10 +20,12 @@
     "url": "git+https://Shubham-Somani@github.com/Shubham-Somani/aws-s3.git"
   },
   "keywords": [
-    "AWS",
-    "AWS S3",
-    "AWS-S3",
-    "s3"
+    "aws",
+    "aws s3",
+    "aws-s3",
+    "s3",
+    "aws s3 presigned url",
+    "presigned url"
   ],
   "author": "Shubham Somani",
   "license": "ISC",
@@ -32,10 +34,6 @@
   },
   "homepage": "https://github.com/Shubham-Somani/aws-s3#readme",
   "devDependencies": {
-    "@aws-sdk/client-cognito-identity": "^3.14.0",
-    "@aws-sdk/client-s3": "^3.14.0",
-    "@aws-sdk/credential-provider-cognito-identity": "^3.14.0",
-    "@aws-sdk/s3-request-presigner": "^3.14.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.1",
     "dotenv": "^8.5.1",
@@ -48,5 +46,14 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.14.0",
+    "@aws-sdk/client-s3": "^3.14.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.14.0",
+    "@aws-sdk/s3-request-presigner": "^3.14.0",
+    "@aws-sdk/smithy-client": "^3.13.1",
+    "@aws-sdk/types": "^3.13.1"
+  },
+  "bundledDependencies": false
 }
