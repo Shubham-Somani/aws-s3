@@ -23,8 +23,8 @@ export class Envoltorio {
   }
 
   /***
-   * Generate Put Presigned URL 
-  ***/
+   * Generate Put Presigned URL
+   ***/
   async putPresignedUrl(putParams: PresignPutUrlParams): Promise<string> {
     const putObjectParams = {
       ACL: putParams.acl,
@@ -37,8 +37,8 @@ export class Envoltorio {
   }
 
   /***
-   * Generate Get Presigned URL 
-  ***/
+   * Generate Get Presigned URL
+   ***/
   async getPresignedUrl(putParams: PresignGetUrlParams): Promise<string> {
     const putObjectParams = {
       Bucket: putParams.bucketName,

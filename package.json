@@ -1,6 +1,6 @@
 {
   "name": "aws-s3-evoltorio",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A wrapper for AWS S3 to get presigned url to get and put objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
