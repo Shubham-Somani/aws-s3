@@ -1,6 +1,7 @@
 node_modules
 lib
-src
+src/__tests__
 tsconfig.json
 tslint.json
 .prettierrc
+.env

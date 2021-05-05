@@ -1,6 +1,6 @@
 {
   "name": "aws-s3-evoltorio",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "A wrapper for AWS S3 to get presigned url to get and put objects",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -38,6 +38,7 @@
     "@aws-sdk/s3-request-presigner": "^3.14.0",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.1",
+    "dotenv": "^8.5.1",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.5",
