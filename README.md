@@ -5,7 +5,7 @@ S3Client - A Javascript Library for AWS S3 with typescript support
 
 ## Installing
 ```
-npm install aws-s3Client
+npm install aws-s3-manager
 ```
 
 ## Getting started
@@ -13,18 +13,18 @@ npm install aws-s3Client
 ##### Import
 ```
 // es5 example
-const { s3Client } = require('aws-s3Client');
+const { AwsS3Manager } = require('aws-s3-manager');
 ```
 ```
 // es6 example
-import { s3Client } from 'aws-s3Client' ;
+import { AwsS3Manager } from 'aws-s3-manager' ;
 ```
 
 ##### Initialize Client
  - Initiate client with configuration (e.g. credentials: (cognito credential), region).
  
 ```
-const client = await new s3Client({
+const client = await new AwsS3Manager({
     REGION: <REGION> // us-west-1,
     IDENTITY_POOL_ID: <IDENTITY_POOL_ID> // '44c50347-c1e0-400a-b221-5b3127b738e8'
   })
