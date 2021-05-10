@@ -5,7 +5,7 @@ S3Client - A Javascript Library for AWS S3 with typescript support
 
 ## Installing
 ```
-npm install aws-s3-evoltorio
+npm install aws-s3-envoltorio
 ```
 
 ## Getting started
@@ -13,11 +13,11 @@ npm install aws-s3-evoltorio
 ##### Import
 ```
 // es5 example
-const { Envoltorio } = require('aws-s3-evoltorio');
+const { Envoltorio } = require('aws-s3-envoltorio');
 ```
 ```
 // es6 example
-import { Envoltorio } from 'aws-s3-evoltorio' ;
+import { Envoltorio } from 'aws-s3-envoltorio' ;
 ```
 
 ##### Initialize Client
