@@ -30,7 +30,7 @@ import { HttpHandlerOptions as __HttpHandlerOptions } from '@aws-sdk/types';
 import { InitParams } from './index.types';
 // ...
 
-export class Envoltorio {
+export class s3Client {
   readonly S3: __Client<__HttpHandlerOptions, ServiceInputTypes, ServiceOutputTypes, S3ClientResolvedConfig>
 
   constructor(parameters: InitParams) {

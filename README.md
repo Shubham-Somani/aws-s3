@@ -5,7 +5,7 @@ S3Client - A Javascript Library for AWS S3 with typescript support
 
 ## Installing
 ```
-npm install aws-s3-envoltorio
+npm install aws-s3Client
 ```
 
 ## Getting started
@@ -13,18 +13,18 @@ npm install aws-s3-envoltorio
 ##### Import
 ```
 // es5 example
-const { Envoltorio } = require('aws-s3-envoltorio');
+const { s3Client } = require('aws-s3Client');
 ```
 ```
 // es6 example
-import { Envoltorio } from 'aws-s3-envoltorio' ;
+import { s3Client } from 'aws-s3Client' ;
 ```
 
 ##### Initialize Client
  - Initiate client with configuration (e.g. credentials: (cognito credential), region).
  
 ```
-const client = await new Envoltorio({
+const client = await new s3Client({
     REGION: <REGION> // us-west-1,
     IDENTITY_POOL_ID: <IDENTITY_POOL_ID> // '44c50347-c1e0-400a-b221-5b3127b738e8'
   })
