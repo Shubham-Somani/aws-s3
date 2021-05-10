@@ -17,17 +17,21 @@ import {
   DeleteBucketCommand,
   ListObjectsCommand,
   ListObjectsCommandInput,
-  ListObjectsCommandOutput
+  ListObjectsCommandOutput,
+  GetObjectCommandInput,
+  PutObjectCommandInput,
+  PutObjectCommandOutput,
+  GetObjectCommandOutput
 } from '@aws-sdk/client-s3';
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity';
 import { Client as __Client } from '@aws-sdk/smithy-client';
 import { HttpHandlerOptions as __HttpHandlerOptions } from '@aws-sdk/types';
-import { InitParams, PresignGetUrlParams, PresignPutUrlParams } from './index.types';
+import { InitParams } from './index.types';
 // ...
 
 export class Envoltorio {
-  S3: __Client<__HttpHandlerOptions, ServiceInputTypes, ServiceOutputTypes, S3ClientResolvedConfig>
+  readonly S3: __Client<__HttpHandlerOptions, ServiceInputTypes, ServiceOutputTypes, S3ClientResolvedConfig>
 
   constructor(parameters: InitParams) {
     // Initialize S3 Client
@@ -43,58 +47,168 @@ export class Envoltorio {
   /***
    * Generate Put Presigned URL
    ***/
-  async putPresignedUrl(putParams: PresignPutUrlParams): Promise<string> {
-    const putObjectParams = {
-      ACL: putParams.acl,
-      Bucket: putParams.bucketName,
-      Key: putParams.key,
-      ContentType: putParams.contentType || '',
-    };
-    const command = new PutObjectCommand(putObjectParams);
-    return await getSignedUrl(this.S3, command, { expiresIn: putParams.expires || 3600 });
+  async putPresignedUrl(putParams: PutObjectCommandInput, expiresIn?: number): Promise<{ error: boolean, message: string, data: string | null }> {
+    try {
+      const command = new PutObjectCommand(putParams);
+      const output = await getSignedUrl(this.S3, command, { expiresIn: expiresIn || 3600 });
+      return {
+        error: false,
+        message: 'Signed url generated successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
 
   /***
    * Generate Get Presigned URL
    ***/
-  async getPresignedUrl(putParams: PresignGetUrlParams): Promise<string> {
-    const putObjectParams = {
-      Bucket: putParams.bucketName,
-      Key: putParams.key,
-    };
-    const command = new GetObjectCommand(putObjectParams);
-    return await getSignedUrl(this.S3, command, { expiresIn: putParams.expires || 3600 });
+  async getPresignedUrl(putParams: GetObjectCommandInput, expiresIn?: number): Promise<{ error: boolean, message: string, data: string | null }> {
+    try {
+      const command = new GetObjectCommand(putParams);
+      const output = await getSignedUrl(this.S3, command, { expiresIn: expiresIn || 3600 });
+      return {
+        error: false,
+        message: 'Signed url generated successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
   
   /***
    * List Buckets
    ***/
-  async getBucketList(): Promise<ListBucketsCommandOutput> {
-    const command = new ListBucketsCommand({});
-    return await this.S3.send(command);
+  async getBucketList(): Promise<{ error: boolean, message: string, data: ListBucketsCommandOutput | null }> {
+    try {
+      const command = new ListBucketsCommand({});
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Bucket listed successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
 
   /***
    * Create Bucket
    ***/
-  async createBucket(createBucketParams: CreateBucketCommandInput): Promise<CreateBucketCommandOutput> {
-    const command = new CreateBucketCommand(createBucketParams);
-    return await this.S3.send(command);
+  async createBucket(createBucketParams: CreateBucketCommandInput): Promise<{error: boolean, message: string, data: CreateBucketCommandOutput | null}> {
+    try {
+      const command = await new CreateBucketCommand(createBucketParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Bucket created successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
 
   /***
    * Delete Bucket
    ***/
-  async deleteBucket(deleteBucketParams: DeleteBucketCommandInput): Promise<DeleteBucketCommandOutput> {
-    const command = new DeleteBucketCommand(deleteBucketParams);
-    return await this.S3.send(command);
+  async deleteBucket(deleteBucketParams: DeleteBucketCommandInput): Promise<{ error: boolean, message: string, data: DeleteBucketCommandOutput | null }> {
+    try {
+      const command = new DeleteBucketCommand(deleteBucketParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Bucket deleted successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
 
   /***
    * List Objects
    ***/
-  async getObjectList(listObjectParams: ListObjectsCommandInput): Promise<ListObjectsCommandOutput> {
-    const command = new ListObjectsCommand(listObjectParams);
-    return await this.S3.send(command);
+  async getObjectList(listObjectParams: ListObjectsCommandInput): Promise<{ error: boolean, message: string, data: ListObjectsCommandOutput | null }> {
+    try {
+      const command = new ListObjectsCommand(listObjectParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Objects listed successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
+  }
+
+  /***
+   * Upload Object
+   ***/
+  async uploadObject(putObjectParams: PutObjectCommandInput): Promise<{ error: boolean, message: string, data: PutObjectCommandOutput | null }> {
+    try {
+      const command = new PutObjectCommand(putObjectParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Object uploaded successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
+  }
+
+  /***
+   * Get Object
+   ***/
+  async getObject(getObjectParams: GetObjectCommandInput): Promise<{ error: boolean, message: string, data: GetObjectCommandOutput | null }> {
+    try {
+      const command = new GetObjectCommand(getObjectParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Object fetched successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
   }
 }
