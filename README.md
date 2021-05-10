@@ -11,11 +11,11 @@ npm install aws-s3-manager
 ## Getting started
 
 ##### Import
-```
+``` javascript
 // es5 example
 const { AwsS3Manager } = require('aws-s3-manager');
 ```
-```
+``` javascript
 // es6 example
 import { AwsS3Manager } from 'aws-s3-manager' ;
 ```
@@ -23,7 +23,7 @@ import { AwsS3Manager } from 'aws-s3-manager' ;
 ##### Initialize Client
  - Initiate client with configuration (e.g. credentials: (cognito credential), region).
  
-```
+``` javascript
 const client = await new AwsS3Manager({
     REGION: <REGION> // us-west-1,
     IDENTITY_POOL_ID: <IDENTITY_POOL_ID> // '44c50347-c1e0-400a-b221-5b3127b738e8'
@@ -32,7 +32,7 @@ const client = await new AwsS3Manager({
 
 ##### List Bucket
 
-```
+``` javascript
 const { error, message, data } = await client.listBucket();
   if (error) {
     console.log('error -->', message)
@@ -42,7 +42,7 @@ const { error, message, data } = await client.listBucket();
 
 ##### Create Bucket
 
-```
+``` javascript
 const { error, message, data } = await client.createBucket({ Bucket: <BUCKET_NAME> });
   if (error) {
     console.log('error -->', message)
@@ -52,7 +52,7 @@ const { error, message, data } = await client.createBucket({ Bucket: <BUCKET_NAM
 
 ##### Delete Bucket
 
-```
+``` javascript
 const { error, message, data } = await client.deleteBucket({ Bucket: <BUCKET_NAME> });
   if (error) {
     console.log('error -->', message)
@@ -62,7 +62,7 @@ const { error, message, data } = await client.deleteBucket({ Bucket: <BUCKET_NAM
 
 ##### List Objects
 
-```
+``` javascript
 const { error, message, data } = await client.getObjectList({ Bucket: <BUCKET_NAME> });
   if (error) {
     console.log('error -->', message)
@@ -72,7 +72,7 @@ const { error, message, data } = await client.getObjectList({ Bucket: <BUCKET_NA
 
 ##### Upload Object
 
-```
+``` javascript
 const uploadParams = {
   ACL: "authenticated-read" | "aws-exec-read" | "bucket-owner-full-control" | "bucket-owner-read" | "private" | "public-read" | "public-read-write",
   Body: <FILE_BODY>,
@@ -88,7 +88,7 @@ const { error, message, data } = await client.uploadObject(uploadParams);
 
 ##### Get Object
 
-```
+``` javascript
 const getParams = {
   Bucket: <BUCKET_NAME>,
   Key:  <FILE_NAME>
@@ -102,7 +102,7 @@ const { error, message, data } = await client.getObject(getParams);
 
 ##### Generate Get Object Signed URL
 
-```
+``` javascript
 const getParams = {
   Bucket: <BUCKET_NAME>,
   Key:  <FILE_NAME>
@@ -116,7 +116,7 @@ const { error, message, data } = await client.getPresignedUrl(getParams);
 
 ##### Generate Upload Object Signed URL
 
-```
+``` javascript
 const uploadParams = {
   ACL: "authenticated-read" | "aws-exec-read" | "bucket-owner-full-control" | "bucket-owner-read" | "private" | "public-read" | "public-read-write",
   Bucket: <BUCKET_NAME>,
