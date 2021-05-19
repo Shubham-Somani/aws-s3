@@ -1,7 +1,7 @@
 {
   "name": "aws-s3-manager",
-  "version": "1.0.1",
-  "description": "A wrapper for AWS S3 to get presigned url to get and put objects",
+  "version": "2.0.0",
+  "description": "A wrapper for AWS S3 to upload files",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -25,7 +25,9 @@
     "aws-s3",
     "s3",
     "aws s3 presigned url",
-    "presigned url"
+    "presigned url",
+    "upload s3",
+    "s3 manager"
   ],
   "author": "Shubham Somani",
   "license": "ISC",

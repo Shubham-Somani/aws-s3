@@ -21,7 +21,13 @@ import {
   GetObjectCommandInput,
   PutObjectCommandInput,
   PutObjectCommandOutput,
-  GetObjectCommandOutput
+  GetObjectCommandOutput,
+  DeleteObjectCommand,
+  DeleteObjectCommandInput,
+  DeleteObjectCommandOutput,
+  GetBucketAclCommand,
+  GetBucketAclCommandOutput,
+  GetBucketAclCommandInput
 } from '@aws-sdk/client-s3';
 import { CognitoIdentityClient } from '@aws-sdk/client-cognito-identity';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity';
@@ -36,11 +42,14 @@ export class AwsS3Manager {
   constructor(parameters: InitParams) {
     // Initialize S3 Client
     this.S3 = new S3Client({
-      region: parameters.REGION,
-      credentials: fromCognitoIdentityPool({
-        client: new CognitoIdentityClient({ region: parameters.REGION }),
-        identityPoolId: `${parameters.REGION}:${parameters.IDENTITY_POOL_ID}`, // IDENTITY_POOL_ID
-      }),
+      region: parameters.region,
+      credentials: parameters.type === 1 ? fromCognitoIdentityPool({
+        client: new CognitoIdentityClient({ region: parameters.region }),
+        identityPoolId: `${parameters.region}:${parameters.identityPoolId || ''}`, // IDENTITY_POOL_ID
+      }) : {
+        accessKeyId: parameters.accessKeyId || '',
+        secretAccessKey: parameters.secretAccessKey || '',
+      }
     });
   }
 
@@ -201,6 +210,27 @@ export class AwsS3Manager {
       return {
         error: false,
         message: 'Object fetched successfully',
+        data: output
+      };
+    } catch (error) {
+      return {
+        error: true,
+        message: error.message,
+        data: null
+      }
+    }
+  }
+
+  /***
+   * Delete Object
+   ***/
+  async deleteObject(deleteObjectParams: DeleteObjectCommandInput): Promise<{ error: boolean, message: string, data: DeleteObjectCommandOutput | null }> {
+    try {
+      const command = new DeleteObjectCommand(deleteObjectParams);
+      const output = await this.S3.send(command);
+      return {
+        error: false,
+        message: 'Object deleted successfully',
         data: output
       };
     } catch (error) {

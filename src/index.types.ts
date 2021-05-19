@@ -1,4 +1,7 @@
 export type InitParams = {
-  REGION: string;
-  IDENTITY_POOL_ID: string;
+  region: string;
+  type: number;
+  identityPoolId?: string;
+  accessKeyId?: string;
+  secretAccessKey?: string;
 };

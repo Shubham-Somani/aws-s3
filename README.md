@@ -1,8 +1,8 @@
 # A wrapper for AWS S3
 
 ## Description
-S3Client - A Javascript Library for AWS S3 with typescript support
-
+S3Client - A Javascript Library for AWS S3 File Upload
+If using it with browser setup cors
 ## Installing
 ```
 npm install aws-s3-manager
@@ -26,7 +26,20 @@ import { AwsS3Manager } from 'aws-s3-manager' ;
 ``` javascript
 const client = await new AwsS3Manager({
     REGION: <REGION> // us-west-1,
+    TYPE: 1,
     IDENTITY_POOL_ID: <IDENTITY_POOL_ID> // '44c50347-c1e0-400a-b221-5b3127b738e8'
+  })
+```
+
+or
+
+ 
+``` javascript
+const client = await new AwsS3Manager({
+    REGION: <REGION> // us-west-1,
+    TYPE: 2,
+    ACCESS_KEY_ID: <ACCESS_KEY_ID>,
+    SECRET_ACCESS_KEY: <SECRET_ACCESS_KEY>
   })
 ```
 
