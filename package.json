@@ -50,7 +50,7 @@
     "lib/**/*"
   ],
   "dependencies": {
-    "@aws-sdk/client-cognito-identity": "^3.14.0",
+    "@aws-sdk/client-cognito-identity": "^3.15.0",
     "@aws-sdk/client-s3": "^3.14.0",
     "@aws-sdk/credential-provider-cognito-identity": "^3.14.0",
     "@aws-sdk/s3-request-presigner": "^3.14.0",
